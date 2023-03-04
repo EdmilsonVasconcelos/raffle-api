@@ -1,7 +1,7 @@
 package br.com.vsc.raffle.service;
 
-import br.com.vsc.raffle.exception.ProductExistsException;
-import br.com.vsc.raffle.exception.ProductNotExistsException;
+import br.com.vsc.raffle.exception.ProductAlreadyExistsException;
+import br.com.vsc.raffle.exception.ProductDoesNotExistException;
 import br.com.vsc.raffle.model.Product;
 import br.com.vsc.raffle.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class ProductService {
 
     public Product findProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotExistsException("Produto não existe"));
+                .orElseThrow(() -> new ProductDoesNotExistException("Produto não existe"));
     }
 
     public Product upsertProduct(Product product) {
@@ -42,7 +42,7 @@ public class ProductService {
         Optional<Product> product = productRepository.findByDescription(description);
 
         if(product.isPresent()) {
-            throw new ProductExistsException("Produto já existe");
+            throw new ProductAlreadyExistsException("Produto já existe");
         }
     }
 }

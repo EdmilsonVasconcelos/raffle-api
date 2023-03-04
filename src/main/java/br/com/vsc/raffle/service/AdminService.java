@@ -1,7 +1,7 @@
 package br.com.vsc.raffle.service;
 
-import br.com.vsc.raffle.exception.AdminExistsException;
-import br.com.vsc.raffle.exception.AdminNotExistException;
+import br.com.vsc.raffle.exception.AdminAlreadyExistsException;
+import br.com.vsc.raffle.exception.AdminDoesNotExistException;
 import br.com.vsc.raffle.model.Admin;
 import br.com.vsc.raffle.repository.AdminRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -69,14 +69,14 @@ public class AdminService {
 	
 	private Admin getAdminByEmail(String email) {
 		return adminRepository.findByEmail(email)
-				.orElseThrow(() -> new AdminNotExistException(String.format(ADMIN_WITH_EMAIL_DOES_NOT_EXIST, email)));
+				.orElseThrow(() -> new AdminDoesNotExistException(String.format(ADMIN_WITH_EMAIL_DOES_NOT_EXIST, email)));
 	}
 
 	private void checkAdminExists(String email) {
 		Optional<Admin> admin = adminRepository.findByEmail(email);
 		
 		if(admin.isPresent()) {
-			throw new AdminExistsException(String.format(ADMIN_WITH_EMAIL_EXISTS, email));
+			throw new AdminAlreadyExistsException(String.format(ADMIN_WITH_EMAIL_EXISTS, email));
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class AdminService {
 		Optional<Admin> admin = adminRepository.findById(idUser);
 		
 		if(admin.isEmpty()) {
-			throw new AdminNotExistException(String.format(ADMIN_WITH_ID_DOES_NOT_EXIST, idUser));
+			throw new AdminDoesNotExistException(String.format(ADMIN_WITH_ID_DOES_NOT_EXIST, idUser));
 		}
 	}
 }

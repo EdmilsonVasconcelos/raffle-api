@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.vsc.raffle.dto.error.ErrorValidationDTO;
 import br.com.vsc.raffle.dto.error.ExceptionResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -39,20 +38,20 @@ public class ErrorValidationHandler {
 	}
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(AdminExistsException.class)
-	public ExceptionResponse handle(AdminExistsException exception) {
+	@ExceptionHandler(AdminAlreadyExistsException.class)
+	public ExceptionResponse handle(AdminAlreadyExistsException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(ProductExistsException.class)
-	public ExceptionResponse handle(ProductExistsException exception) {
+	@ExceptionHandler(ProductAlreadyExistsException.class)
+	public ExceptionResponse handle(ProductAlreadyExistsException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(ProductNotExistsException.class)
-	public ExceptionResponse handle(ProductNotExistsException exception) {
+	@ExceptionHandler(ProductDoesNotExistException.class)
+	public ExceptionResponse handle(ProductDoesNotExistException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
 	

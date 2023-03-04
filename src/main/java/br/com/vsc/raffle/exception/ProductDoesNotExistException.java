@@ -1,10 +1,10 @@
 package br.com.vsc.raffle.exception;
 
-public class ProductNotExistsException extends RuntimeException {
+public class ProductDoesNotExistException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public ProductNotExistsException(String message){
+	public ProductDoesNotExistException(String message){
         super(message);
     }
 
