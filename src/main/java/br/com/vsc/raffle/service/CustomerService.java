@@ -28,11 +28,11 @@ public class CustomerService {
                 .orElseThrow(() -> new CustomerDoesNotExistException("Cliente não existe"));
     }
 
-    public Customer upsertCostumer(Customer customer) {
+    public Customer upsertCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 
-    public void deleteCostumer(Long id) {
+    public void deleteCustomer(Long id) {
         Customer costumer = findById(id);
         customerRepository.delete(costumer);
     }

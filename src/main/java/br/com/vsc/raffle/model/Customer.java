@@ -1,5 +1,6 @@
 package br.com.vsc.raffle.model;
 
+import br.com.vsc.raffle.dto.customer.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,4 +41,15 @@ public class Customer {
 
 	@LastModifiedDate
 	private LocalDateTime updated;
+
+	public static Customer toDomain(CustomerDTO customerDTO) {
+		return Customer.builder()
+				.id(customerDTO.getId())
+				.email(customerDTO.getEmail())
+				.cpf(customerDTO.getCpf())
+				.name(customerDTO.getName())
+				.address(Address.toAddress(customerDTO.getAddress()))
+				.phoneNumber(customerDTO.getPhoneNumber())
+				.build();
+	}
 }
