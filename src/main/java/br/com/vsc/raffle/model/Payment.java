@@ -24,12 +24,16 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "raffle_id")
     private Raffle raffle;
 
     @Enumerated(EnumType.STRING)
     private StatusPayment statusPayment;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @CreatedDate
     @Column(updatable = false)
@@ -37,5 +41,4 @@ public class Payment {
 
     @LastModifiedDate
     private LocalDateTime updated;
-
 }
