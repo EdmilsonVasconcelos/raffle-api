@@ -11,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Builder
@@ -25,8 +24,6 @@ public class Product {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
-	private BigDecimal price;
 	
 	private String description;
 
@@ -43,7 +40,6 @@ public class Product {
     public static Product toDomain(ProductDTO productDTO) {
     	return Product.builder()
 				.id(productDTO.getId())
-				.price(productDTO.getPrice())
 				.description(productDTO.getDescription())
 				.status(StatusProduct.valueOf(productDTO.getStatus()))
 				.build();

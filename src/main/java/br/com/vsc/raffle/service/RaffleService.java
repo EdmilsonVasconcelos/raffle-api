@@ -3,7 +3,6 @@ package br.com.vsc.raffle.service;
 import br.com.vsc.raffle.exception.RaffleDoesNotExistException;
 import br.com.vsc.raffle.model.Product;
 import br.com.vsc.raffle.model.Raffle;
-import br.com.vsc.raffle.repository.ProductRepository;
 import br.com.vsc.raffle.repository.RaffleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class RaffleService {
 
     private final RaffleRepository raffleRepository;
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     public List<Raffle> getAllRaffles() {
         return raffleRepository.findAll();
@@ -33,7 +32,7 @@ public class RaffleService {
     }
 
     public Raffle saveRaffle(Raffle raffle, Long productId) {
-        Product product = productRepository.getById(productId);
+        Product product = productService.findProductById(productId);
         raffle.setProduct(product);
         return raffleRepository.save(raffle);
     }
@@ -42,5 +41,4 @@ public class RaffleService {
         Raffle raffle = this.getById(id);
         raffleRepository.delete(raffle);
     }
-
 }
