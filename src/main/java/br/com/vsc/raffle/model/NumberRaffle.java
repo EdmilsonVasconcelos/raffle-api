@@ -1,5 +1,6 @@
 package br.com.vsc.raffle.model;
 
+import br.com.vsc.raffle.enums.StatusPayment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class NumberRaffle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +29,13 @@ public class Payment {
     @JoinColumn(name = "raffle_id")
     private Raffle raffle;
 
+    @Nullable
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "status_number_id")
-    private StatusNumberRaffle statusNumberRaffle;
+    @Enumerated(EnumType.STRING)
+    private StatusPayment statusPayment = StatusPayment.AVAILABLE;
 
     @CreatedDate
     @Column(updatable = false)

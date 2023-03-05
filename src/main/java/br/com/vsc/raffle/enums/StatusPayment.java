@@ -1,7 +1,7 @@
 package br.com.vsc.raffle.enums;
 
 public enum StatusPayment {
-    AVAILALE,
+    AVAILABLE,
     WAITING,
     PAID
 }

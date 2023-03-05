@@ -72,4 +72,10 @@ public class ErrorValidationHandler {
 	public ExceptionResponse handle(RaffleDoesNotExistException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
+
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(NumberRaffleDoesNotExistException.class)
+	public ExceptionResponse handle(NumberRaffleDoesNotExistException exception) {
+		return new ExceptionResponse(exception.getMessage());
+	}
 }

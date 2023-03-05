@@ -39,7 +39,7 @@ public class Raffle {
 
     @OneToMany
     @JoinColumn(name = "payment_id")
-    private List<Payment> payment = new ArrayList<>();
+    private List<NumberRaffle> numbers = new ArrayList<>();
 
     private BigDecimal price;
 
