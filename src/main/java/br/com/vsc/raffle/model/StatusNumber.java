@@ -1,5 +1,6 @@
 package br.com.vsc.raffle.model;
 
+import br.com.vsc.raffle.enums.StatusPayment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,23 +18,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class StatusNumber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "raffle_id")
-    private Raffle raffle;
-
-    @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "status_number_id")
-    private StatusNumber statusNumber;
+    @Enumerated(EnumType.STRING)
+    private StatusPayment statusPayment;
 
     @CreatedDate
     @Column(updatable = false)
