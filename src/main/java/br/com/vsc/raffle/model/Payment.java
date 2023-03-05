@@ -33,7 +33,7 @@ public class Payment {
 
     @OneToOne
     @JoinColumn(name = "status_number_id")
-    private StatusNumber statusNumber;
+    private StatusNumberRaffle statusNumberRaffle;
 
     @CreatedDate
     @Column(updatable = false)

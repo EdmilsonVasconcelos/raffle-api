@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class StatusNumber {
+public class StatusNumberRaffle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
