@@ -62,8 +62,14 @@ public class ErrorValidationHandler {
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(GenericException.class)
-	public ExceptionResponse handle(GenericException exception) {
+	@ExceptionHandler(RaffleException.class)
+	public ExceptionResponse handle(RaffleException exception) {
+		return new ExceptionResponse(exception.getMessage());
+	}
+
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(RaffleDoesNotExistException.class)
+	public ExceptionResponse handle(RaffleDoesNotExistException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
 }
