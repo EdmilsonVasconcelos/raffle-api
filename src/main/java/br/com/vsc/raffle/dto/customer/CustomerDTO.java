@@ -25,14 +25,7 @@ public class CustomerDTO {
 
     public static List<CustomerDTO> toList(List<Customer> customers) {
         return customers.stream()
-                .map(customer -> CustomerDTO.builder()
-                        .id(customer.getId())
-                        .email(customer.getEmail())
-                        .cpf(customer.getCpf())
-                        .name(customer.getName())
-                        .address(AddressDTO.toAddressDTO(customer.getAddress()))
-                        .phoneNumber(customer.getPhoneNumber())
-                        .build())
+                .map(CustomerDTO::toDto)
                 .collect(Collectors.toList());
     }
 

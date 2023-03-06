@@ -12,8 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Builder
 @Data
@@ -36,10 +34,6 @@ public class Raffle {
     @Column(length = 10000)
     @Lob
     private String description;
-
-    @OneToMany
-    @JoinColumn(name = "payment_id")
-    private List<NumberRaffle> numbers = new ArrayList<>();
 
     private BigDecimal price;
 

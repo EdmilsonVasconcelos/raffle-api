@@ -1,6 +1,6 @@
 package br.com.vsc.raffle.enums;
 
-public enum StatusPayment {
+public enum PaymentStatus {
     AVAILABLE,
     WAITING,
     PAID

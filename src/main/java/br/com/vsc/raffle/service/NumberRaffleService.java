@@ -8,6 +8,7 @@ import br.com.vsc.raffle.repository.NumberRaffleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,11 +29,25 @@ public class NumberRaffleService {
         return numberRaffleRepository.findById(id)
                 .orElseThrow(() ->  new NumberRaffleDoesNotExistException("Número de sorteio não exite"));
     }
+    public List<NumberRaffle> getByRaffle(Long id) {
+        return numberRaffleRepository.getByRaffle(raffleService.getById(id));
+    }
 
-    public NumberRaffle save(NumberRaffle numberRaffle, Long idRaffle) {
-        Raffle raffle = raffleService.getById(idRaffle);
-        numberRaffle.setRaffle(raffle);
-        return numberRaffleRepository.save(numberRaffle);
+    public List<NumberRaffle> saveNumbers(Long raffleId) {
+        Raffle raffle = raffleService.getById(raffleId);
+
+        Integer maximumNumbersRaffle = raffle.getMaximumNumbers();
+        List<NumberRaffle> numbersRaffle = new ArrayList<>();
+
+        for (int i = 0; i < maximumNumbersRaffle; i++) {
+            NumberRaffle numberRaffle = new NumberRaffle();
+            numberRaffle.setRaffle(raffle);
+            numberRaffle.setNumber((long) i);
+
+            numbersRaffle.add(numberRaffle);
+        }
+        
+        return numberRaffleRepository.saveAll(numbersRaffle);
     }
 
     public NumberRaffle update(NumberRaffle numberRaffle, Long customerId) {
@@ -45,5 +60,4 @@ public class NumberRaffleService {
         NumberRaffle numberRaffle = this.getById(id);
         numberRaffleRepository.delete(numberRaffle);
     }
-
 }
