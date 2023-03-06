@@ -27,9 +27,6 @@ public class Product {
 	
 	private String description;
 
-	@Enumerated(EnumType.STRING)
-	private StatusProduct status;
-
     @CreatedDate
     @Column(updatable = false)
 	private LocalDateTime created;
@@ -41,7 +38,6 @@ public class Product {
     	return Product.builder()
 				.id(productDTO.getId())
 				.description(productDTO.getDescription())
-				.status(StatusProduct.valueOf(productDTO.getStatus()))
 				.build();
 	}
 }

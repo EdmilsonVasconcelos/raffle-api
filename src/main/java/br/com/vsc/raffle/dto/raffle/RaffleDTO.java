@@ -1,6 +1,5 @@
 package br.com.vsc.raffle.dto.raffle;
 
-import br.com.vsc.raffle.dto.number.NumberRaffleDTO;
 import br.com.vsc.raffle.dto.product.ProductDTO;
 import br.com.vsc.raffle.model.Raffle;
 import lombok.Builder;
@@ -22,9 +21,9 @@ public class RaffleDTO {
 
     private BigDecimal price;
 
-    private ProductDTO product;
+    private String status;
 
-    private List<NumberRaffleDTO> numbers;
+    private ProductDTO product;
 
     public static List<RaffleDTO> toList(List<Raffle> raffles) {
         return raffles.stream()
@@ -39,6 +38,7 @@ public class RaffleDTO {
                 .description(raffle.getDescription())
                 .price(raffle.getPrice())
                 .product(ProductDTO.toDto(raffle.getProduct()))
+                .status(raffle.getStatus().toString())
                 .build();
     }
 }

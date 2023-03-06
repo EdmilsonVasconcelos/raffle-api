@@ -1,6 +1,7 @@
 package br.com.vsc.raffle.model;
 
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
+import br.com.vsc.raffle.enums.StatusProduct;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,6 +38,9 @@ public class Raffle {
 
     private BigDecimal price;
 
+    @Enumerated(EnumType.STRING)
+    private StatusProduct status;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime created;
@@ -49,6 +53,7 @@ public class Raffle {
                 .description(raffleDTO.getDescription())
                 .maximumNumbers(raffleDTO.getMaximumNumbers())
                 .price(raffleDTO.getPrice())
+                .status(StatusProduct.WAITING)
                 .build();
     }
 }
