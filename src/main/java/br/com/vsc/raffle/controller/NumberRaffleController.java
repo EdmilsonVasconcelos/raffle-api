@@ -3,6 +3,7 @@ package br.com.vsc.raffle.controller;
 import br.com.vsc.raffle.dto.number.NumberRaffleDTO;
 import br.com.vsc.raffle.model.NumberRaffle;
 import br.com.vsc.raffle.service.NumberRaffleService;
+import br.com.vsc.raffle.service.RaffleService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ public class NumberRaffleController {
 
     private final NumberRaffleService numberRaffleService;
 
+    private final RaffleService raffleService;
+
     @GetMapping
     public ResponseEntity<List<NumberRaffleDTO>> getAll() {
         List<NumberRaffle> numberRaffles = numberRaffleService.getAll();
@@ -36,13 +39,13 @@ public class NumberRaffleController {
 
     @GetMapping(value = "/by-raffle")
     public ResponseEntity<List<NumberRaffleDTO>> getByRaffle(@RequestParam Long raffleId) {
-        List<NumberRaffle> numberRaffles = numberRaffleService.getByRaffle(raffleId);
+        List<NumberRaffle> numberRaffles = raffleService.getNumbersByRaffle(raffleId);
         return ResponseEntity.ok(toList(numberRaffles));
     }
 
     @PostMapping
     public ResponseEntity<List<NumberRaffleDTO>> save(@RequestParam Long raffleId) {
-        List<NumberRaffle> numberRaffle = numberRaffleService.saveNumbers(raffleId);
+        List<NumberRaffle> numberRaffle = raffleService.saveNumbers(raffleId);
         return ResponseEntity.status(HttpStatus.CREATED).body(toList(numberRaffle));
     }
 
