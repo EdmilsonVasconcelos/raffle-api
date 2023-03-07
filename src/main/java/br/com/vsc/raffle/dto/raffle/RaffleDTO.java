@@ -2,14 +2,18 @@ package br.com.vsc.raffle.dto.raffle;
 
 import br.com.vsc.raffle.dto.product.ProductDTO;
 import br.com.vsc.raffle.model.Raffle;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class RaffleDTO {
 

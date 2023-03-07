@@ -1,4 +1,4 @@
-package br.com.vsc.raffle.dto.auth.request;
+package br.com.vsc.raffle.dto.auth;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

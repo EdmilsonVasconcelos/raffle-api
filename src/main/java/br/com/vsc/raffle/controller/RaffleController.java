@@ -35,7 +35,7 @@ public class RaffleController {
     }
 
     @PostMapping
-    public ResponseEntity<RaffleDTO> save(@Valid @RequestBody RaffleDTO raffleDTO,
+    public ResponseEntity<RaffleDTO> save(@Valid RaffleDTO raffleDTO,
                                                 @RequestParam Long productId) {
         Raffle raffle = raffleService.saveRaffle(Raffle.toDomain(raffleDTO), productId);
 

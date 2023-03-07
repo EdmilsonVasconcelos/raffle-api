@@ -1,4 +1,4 @@
-package br.com.vsc.raffle.dto.auth.response;
+package br.com.vsc.raffle.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

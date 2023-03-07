@@ -1,7 +1,6 @@
 package br.com.vsc.raffle.model;
 
 import br.com.vsc.raffle.dto.product.ProductDTO;
-import br.com.vsc.raffle.enums.StatusProduct;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
