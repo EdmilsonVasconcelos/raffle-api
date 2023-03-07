@@ -2,7 +2,6 @@ package br.com.vsc.raffle.service;
 
 import br.com.vsc.raffle.exception.RaffleDoesNotExistException;
 import br.com.vsc.raffle.model.NumberRaffle;
-import br.com.vsc.raffle.model.Product;
 import br.com.vsc.raffle.model.Raffle;
 import br.com.vsc.raffle.repository.NumberRaffleRepository;
 import br.com.vsc.raffle.repository.RaffleRepository;

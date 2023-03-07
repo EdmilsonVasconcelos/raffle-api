@@ -42,19 +42,7 @@ public class ErrorValidationHandler {
 	public ExceptionResponse handle(AdminAlreadyExistsException exception) {
 		return new ExceptionResponse(exception.getMessage());
 	}
-	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(ProductAlreadyExistsException.class)
-	public ExceptionResponse handle(ProductAlreadyExistsException exception) {
-		return new ExceptionResponse(exception.getMessage());
-	}
-	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(ProductDoesNotExistException.class)
-	public ExceptionResponse handle(ProductDoesNotExistException exception) {
-		return new ExceptionResponse(exception.getMessage());
-	}
-	
+
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(PurchaseNotExistsException.class)
 	public ExceptionResponse handle(PurchaseNotExistsException exception) {

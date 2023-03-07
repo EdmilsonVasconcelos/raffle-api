@@ -37,7 +37,6 @@ public class NumberRaffleDTO {
                 .customer(numberRaffle.getCustomer() != null ? CustomerDTO.toDto(numberRaffle.getCustomer()) : null)
                 .paymentStatus(numberRaffle.getPaymentStatus().toString())
                 .raffleId(numberRaffle.getRaffle().getId())
-                .productDescription(numberRaffle.getRaffle().getProduct().getDescription())
                 .build();
     }
 }
