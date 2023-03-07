@@ -37,6 +37,14 @@ public class RaffleService {
         return numberRaffleRepository.getByRaffle(getById(id));
     }
 
+    public Raffle saveRaffle(Raffle raffle) {
+        Raffle raffleSaved = raffleRepository.save(raffle);
+
+        saveNumbers(raffleSaved.getId());
+
+        return raffleSaved;
+    }
+
     public List<NumberRaffle> saveNumbers(Long raffleId) {
         Raffle raffle = getById(raffleId);
 

@@ -35,15 +35,14 @@ public class RaffleController {
     }
 
     @PostMapping
-    public ResponseEntity<RaffleDTO> save(@Valid RaffleDTO raffleDTO,
-                                                @RequestParam Long productId) {
-//        Raffle raffle = raffleService.saveRaffle(Raffle.toDomain(raffleDTO), productId);
-//
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(raffle.getId())
-//                .toUri();
-//
-//        return ResponseEntity.created(uri).body(toDto(raffle));
+    public ResponseEntity<RaffleDTO> save(@Valid RaffleDTO raffleDTO) {
+        Raffle raffle = raffleService.saveRaffle(Raffle.toDomain(raffleDTO));
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(raffle.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(toDto(raffle));
     }
 
     @DeleteMapping(value = "/{id}")
