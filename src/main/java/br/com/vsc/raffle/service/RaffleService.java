@@ -28,24 +28,15 @@ public class RaffleService {
                 .orElseThrow(() -> new RaffleDoesNotExistException("Rifa não existe"));
     }
 
-    public Raffle getByDescription(String description) {
-        return raffleRepository.findByDescription(description)
-                .orElseThrow(() -> new RaffleDoesNotExistException("Rifa não existe"));
-    }
-
     public List<NumberRaffle> getNumbersByRaffle(Long id) {
         return numberRaffleRepository.getByRaffle(getById(id));
     }
 
     public Raffle saveRaffle(Raffle raffle) {
-        Raffle raffleSaved = raffleRepository.save(raffle);
-
-        saveNumbers(raffleSaved.getId());
-
-        return raffleSaved;
+        return raffleRepository.save(raffle);
     }
 
-    public List<NumberRaffle> saveNumbers(Long raffleId) {
+    public List<NumberRaffle> createRaffleNumbers(Long raffleId) {
         Raffle raffle = getById(raffleId);
 
         Integer maximumNumbersRaffle = raffle.getMaximumNumbers();

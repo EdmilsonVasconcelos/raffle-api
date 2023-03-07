@@ -1,6 +1,7 @@
 package br.com.vsc.raffle.model;
 
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
+import br.com.vsc.raffle.enums.RaffleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,20 +28,23 @@ public class Raffle {
 
     private String productName;
 
-    private Integer maximumNumbers;
-
     @Column(length = 20000)
     @Lob
     private String description;
 
     private BigDecimal price;
 
+    private Integer maximumNumbers;
+
+    @Enumerated(EnumType.STRING)
+    private RaffleStatus raffleStatus;
+
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime created;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updated;
+    private LocalDateTime updatedAt;
 
     public static Raffle toDomain(RaffleDTO raffleDTO) {
         return Raffle.builder()
@@ -48,6 +52,7 @@ public class Raffle {
                 .maximumNumbers(raffleDTO.getMaximumNumbers())
                 .productName(raffleDTO.getProductName())
                 .price(raffleDTO.getPrice())
+                .raffleStatus(RaffleStatus.valueOf(raffleDTO.getRaffleStatus()))
                 .build();
     }
 }

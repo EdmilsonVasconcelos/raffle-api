@@ -8,9 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 import static br.com.vsc.raffle.dto.number.NumberRaffleDTO.toDto;
@@ -45,7 +43,7 @@ public class NumberRaffleController {
 
     @PostMapping
     public ResponseEntity<List<NumberRaffleDTO>> save(@RequestParam Long raffleId) {
-        List<NumberRaffle> numberRaffle = raffleService.saveNumbers(raffleId);
+        List<NumberRaffle> numberRaffle = raffleService.createRaffleNumbers(raffleId);
         return ResponseEntity.status(HttpStatus.CREATED).body(toList(numberRaffle));
     }
 

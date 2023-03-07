@@ -35,8 +35,10 @@ public class RaffleController {
     }
 
     @PostMapping
-    public ResponseEntity<RaffleDTO> save(@Valid RaffleDTO raffleDTO) {
+    public ResponseEntity<RaffleDTO> create(@Valid @RequestBody RaffleDTO raffleDTO) {
         Raffle raffle = raffleService.saveRaffle(Raffle.toDomain(raffleDTO));
+
+        raffleService.createRaffleNumbers(raffle.getId());
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(raffle.getId())
