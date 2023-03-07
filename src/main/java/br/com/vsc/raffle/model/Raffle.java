@@ -25,9 +25,11 @@ public class Raffle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String productName;
+
     private Integer maximumNumbers;
 
-    @Column(length = 10000)
+    @Column(length = 20000)
     @Lob
     private String description;
 
@@ -44,6 +46,7 @@ public class Raffle {
         return Raffle.builder()
                 .description(raffleDTO.getDescription())
                 .maximumNumbers(raffleDTO.getMaximumNumbers())
+                .productName(raffleDTO.getProductName())
                 .price(raffleDTO.getPrice())
                 .build();
     }
