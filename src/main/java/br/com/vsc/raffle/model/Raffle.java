@@ -25,10 +25,6 @@ public class Raffle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-
     private Integer maximumNumbers;
 
     @Column(length = 10000)

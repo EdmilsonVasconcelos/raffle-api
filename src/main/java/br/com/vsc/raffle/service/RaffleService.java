@@ -7,7 +7,6 @@ import br.com.vsc.raffle.repository.NumberRaffleRepository;
 import br.com.vsc.raffle.repository.RaffleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,6 @@ public class RaffleService {
     private final RaffleRepository raffleRepository;
 
     private final NumberRaffleRepository numberRaffleRepository;
-
-    private final ProductService productService;
 
     public List<Raffle> getAllRaffles() {
         return raffleRepository.findAll();
@@ -34,18 +31,6 @@ public class RaffleService {
     public Raffle getByDescription(String description) {
         return raffleRepository.findByDescription(description)
                 .orElseThrow(() -> new RaffleDoesNotExistException("Rifa não existe"));
-    }
-
-    @Transactional
-    public Raffle saveRaffle(Raffle raffle, Long productId) {
-        Product product = productService.findProductById(productId);
-        raffle.setProduct(product);
-
-        Raffle raffleSaved = raffleRepository.save(raffle);
-
-        saveNumbers(raffleSaved.getId());
-
-        return raffleSaved;
     }
 
     public List<NumberRaffle> getNumbersByRaffle(Long id) {
