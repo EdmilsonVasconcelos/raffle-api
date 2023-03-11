@@ -13,6 +13,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Builder
 @Data
@@ -25,6 +27,9 @@ public class Raffle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ElementCollection
+    private Set<String> images = new HashSet<>();
 
     private String productName;
 

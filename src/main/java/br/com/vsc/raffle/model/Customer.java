@@ -37,10 +37,10 @@ public class Customer {
 
 	@CreatedDate
 	@Column(updatable = false)
-	private LocalDateTime created;
+	private LocalDateTime createdAt;
 
 	@LastModifiedDate
-	private LocalDateTime updated;
+	private LocalDateTime updatedAt;
 
 	public static Customer toDomain(CustomerDTO customerDTO) {
 		return Customer.builder()

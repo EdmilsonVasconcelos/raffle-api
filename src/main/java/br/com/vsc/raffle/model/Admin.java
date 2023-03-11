@@ -42,10 +42,10 @@ public class Admin implements UserDetails {
     
     @CreatedDate
     @Column(updatable = false)
-	private LocalDateTime created;
+	private LocalDateTime createdAt;
 		
     @LastModifiedDate
-	private LocalDateTime updated;
+	private LocalDateTime updatedAt;
     
     @Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

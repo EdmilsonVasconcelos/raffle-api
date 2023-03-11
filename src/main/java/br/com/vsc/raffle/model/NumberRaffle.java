@@ -42,10 +42,10 @@ public class NumberRaffle {
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime created;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updated;
+    private LocalDateTime updatedAt;
 
     public static NumberRaffle toDomain(NumberRaffleDTO numberRaffleDTO) {
         return NumberRaffle.builder()

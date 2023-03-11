@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -38,6 +40,8 @@ public class RaffleDTO {
 
     private String raffleStatus = RaffleStatus.WAITING.toString();
 
+    private Set<String> savedImages = new HashSet<>();
+
     public static List<RaffleDTO> toList(List<Raffle> raffles) {
         return raffles.stream()
                 .map(RaffleDTO::toDto)
@@ -52,6 +56,7 @@ public class RaffleDTO {
                 .description(raffle.getDescription())
                 .price(raffle.getPrice())
                 .raffleStatus(raffle.getRaffleStatus().toString())
+                .savedImages(raffle.getImages())
                 .build();
     }
 }
