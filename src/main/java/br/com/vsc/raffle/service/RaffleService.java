@@ -6,6 +6,8 @@ import br.com.vsc.raffle.model.Raffle;
 import br.com.vsc.raffle.repository.NumberRaffleRepository;
 import br.com.vsc.raffle.repository.RaffleRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,8 +21,8 @@ public class RaffleService {
 
     private final NumberRaffleRepository numberRaffleRepository;
 
-    public List<Raffle> getAllRaffles() {
-        return raffleRepository.findAll();
+    public Page<Raffle> getAllRaffles(Pageable pageable) {
+        return raffleRepository.findAll(pageable);
     }
 
     public Raffle getById(Long id) {

@@ -1,10 +1,15 @@
 package br.com.vsc.raffle.controller;
 
+import br.com.vsc.raffle.dto.PaginatedListRaffleDTO;
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
 import br.com.vsc.raffle.model.Raffle;
 import br.com.vsc.raffle.service.ImageService;
 import br.com.vsc.raffle.service.RaffleService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URI;
-    import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,9 +36,22 @@ public class RaffleController {
     private final ImageService imageService;
 
     @GetMapping
-    public ResponseEntity<List<RaffleDTO>> getAll() {
-        List<Raffle> raffles = raffleService.getAllRaffles();
-        return ResponseEntity.ok(toList(raffles));
+    public ResponseEntity<PaginatedListRaffleDTO> getAll(@PageableDefault(sort = "productName",
+                                                    direction = Sort.Direction.ASC,
+                                                    page = 0,
+                                                    size = 2) Pageable page) {
+
+        Page<Raffle> raffles = raffleService.getAllRaffles(page);
+
+        if(!raffles.hasContent()){
+            return ResponseEntity.notFound().build();
+        }
+
+        List<RaffleDTO> rafflesDto = toList(raffles.getContent());
+
+        PaginatedListRaffleDTO response = PaginatedListRaffleDTO.builder().totalElements(raffles.getTotalElements()).raffles(rafflesDto).build();
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "/{id}")
