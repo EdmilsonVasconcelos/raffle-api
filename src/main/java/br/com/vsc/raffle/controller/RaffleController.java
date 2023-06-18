@@ -39,7 +39,7 @@ public class RaffleController {
     public ResponseEntity<PaginatedListRaffleDTO> getAll(@PageableDefault(sort = "productName",
                                                     direction = Sort.Direction.ASC,
                                                     page = 0,
-                                                    size = 2) Pageable page) {
+                                                    size = 6) Pageable page) {
 
         Page<Raffle> raffles = raffleService.getAllRaffles(page);
 
