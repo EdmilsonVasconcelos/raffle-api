@@ -36,10 +36,7 @@ jobs:
         run: bash <(curl -fsSL cli.new)
       
       - name: Login to Railway
-        run: ${{ join(' ', secrets.RAILWAY_TOKEN, 'railway', 'run') }}
-
-      - name: Login Railway CLI
-        run: ${{ secrets.RAILWAY_TOKEN }}
+        run: ${{ secrets.RAILWAY_TOKEN }} railway run
 
       - name: Build with Maven
         run: mvn clean package --batch-mode --no-transfer-progress
