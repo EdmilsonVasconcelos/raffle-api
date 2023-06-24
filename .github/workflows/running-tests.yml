@@ -36,7 +36,7 @@ jobs:
         run: bash <(curl -fsSL cli.new)
       
       - name: Login to Railway
-        run: railway login ${{ secrets.RAILWAY_TOKEN }}
+        run: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Login Railway CLI
         run: ${{ secrets.RAILWAY_TOKEN }}
