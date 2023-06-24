@@ -36,7 +36,7 @@ jobs:
         run: bash <(curl -fsSL cli.new)
 
       - name: Configure Railway CLI
-        run: railway run ${{ secrets.RAILWAY_TOKEN }}
+        run: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Build with Maven
         run: mvn clean package --batch-mode --no-transfer-progress
