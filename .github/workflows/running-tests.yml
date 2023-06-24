@@ -34,8 +34,11 @@ jobs:
         
       - name: Install Railway CLI
         run: bash <(curl -fsSL cli.new)
+      
+      - name: Display Railway Token
+        run: echo ${{ secrets.RAILWAY_TOKEN }}
 
-      - name: Configure Railway CLI
+      - name: Login Railway CLI
         run: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Build with Maven
