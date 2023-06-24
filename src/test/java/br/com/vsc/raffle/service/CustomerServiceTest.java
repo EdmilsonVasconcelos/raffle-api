@@ -14,6 +14,9 @@ import org.mockito.MockitoAnnotations;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 class CustomerServiceTest {
 
     @Mock
@@ -32,14 +35,14 @@ class CustomerServiceTest {
         Customer customer1 = Customer.builder().id(1L).email("john@example.com").name("john").build();
         Customer customer2 = Customer.builder().id(2L).email("maria@example.com").name("maria").build();
 
-        Mockito.when(customerRepository.findAll()).thenReturn(List.of(customer1, customer2));
+        when(customerRepository.findAll()).thenReturn(List.of(customer1, customer2));
 
         List<Customer> result = customerService.getAllCustomers();
 
         Assertions.assertEquals(2, result.size());
         Assertions.assertEquals(customer1, result.get(0));
         Assertions.assertEquals(customer2, result.get(1));
-        Mockito.verify(customerRepository, Mockito.times(2)).findAll();
+        verify(customerRepository, Mockito.times(1)).findAll();
     }
 
     @Test
@@ -47,26 +50,26 @@ class CustomerServiceTest {
         Long customerId = 1L;
         Customer customer = Customer.builder().id(1L).email("john@example.com").name("john").build();
 
-        Mockito.when(customerRepository.findById(customerId)).thenReturn(Optional.of(customer));
+        when(customerRepository.findById(customerId)).thenReturn(Optional.of(customer));
 
         Customer result = customerService.findById(customerId);
 
         Assertions.assertEquals(customerId, result.getId());
         Assertions.assertEquals("john", result.getName());
         Assertions.assertEquals("john@example.com", result.getEmail());
-        Mockito.verify(customerRepository, Mockito.times(2)).findById(customerId);
+        verify(customerRepository, Mockito.times(1)).findById(customerId);
     }
 
     @Test
     public void testFindByIdNonExistingCustomer() {
         Long customerId = 1L;
 
-        Mockito.when(customerRepository.findById(customerId)).thenReturn(Optional.empty());
+        when(customerRepository.findById(customerId)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(CustomerDoesNotExistException.class, () -> {
             customerService.findById(customerId);
         });
-        Mockito.verify(customerRepository, Mockito.times(1)).findById(customerId);
+        verify(customerRepository, Mockito.times(1)).findById(customerId);
     }
 
     @Test
@@ -74,36 +77,36 @@ class CustomerServiceTest {
         String email = "john@example.com";
         Customer customer = Customer.builder().id(1L).email("old@example.com").name("john").build();
 
-        Mockito.when(customerRepository.findByEmail(email)).thenReturn(Optional.of(customer));
+        when(customerRepository.findByEmail(email)).thenReturn(Optional.of(customer));
 
         Customer result = customerService.findByEmail(email);
 
         Assertions.assertEquals(customer, result);
-        Mockito.verify(customerRepository, Mockito.times(1)).findByEmail(email);
+        verify(customerRepository, Mockito.times(1)).findByEmail(email);
     }
 
     @Test
     public void testFindByEmailNonExistingCustomer() {
         String email = "john@example.com";
 
-        Mockito.when(customerRepository.findByEmail(email)).thenReturn(Optional.empty());
+        when(customerRepository.findByEmail(email)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(CustomerDoesNotExistException.class, () -> {
             customerService.findByEmail(email);
         });
-        Mockito.verify(customerRepository, Mockito.times(1)).findByEmail(email);
+        verify(customerRepository, Mockito.times(1)).findByEmail(email);
     }
 
     @Test
     public void testUpsertCustomer() {
         Customer customer = Customer.builder().id(1L).email("old@example.com").name("john").build();
 
-        Mockito.when(customerRepository.save(customer)).thenReturn(customer);
+        when(customerRepository.save(customer)).thenReturn(customer);
 
         Customer result = customerService.upsertCustomer(customer);
 
         Assertions.assertEquals(customer, result);
-        Mockito.verify(customerRepository, Mockito.times(1)).save(customer);
+        verify(customerRepository, Mockito.times(1)).save(customer);
     }
 
     @Test
@@ -111,11 +114,11 @@ class CustomerServiceTest {
         Long customerId = 1L;
         Customer customer = Customer.builder().id(1L).email("old@example.com").name("john").build();
 
-        Mockito.when(customerRepository.findById(customerId)).thenReturn(Optional.of(customer));
+        when(customerRepository.findById(customerId)).thenReturn(Optional.of(customer));
 
         customerService.deleteCustomer(customerId);
 
-        Mockito.verify(customerRepository, Mockito.times(1)).findById(customerId);
-        Mockito.verify(customerRepository, Mockito.times(1)).delete(customer);
+        verify(customerRepository, Mockito.times(1)).findById(customerId);
+        verify(customerRepository, Mockito.times(1)).delete(customer);
     }
 }
