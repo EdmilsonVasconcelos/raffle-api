@@ -33,9 +33,15 @@ jobs:
         run: mvn test
         
       - name: Install Railway CLI
-        run: curl -sSL https://railway.app/cli | sudo sh
+        run: curl -sSL https://railway.app/cli > railway.sh && chmod +x railway.sh
 
       - name: Configure Railway CLI
         env:
           RAILWAY_API_KEY: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway configure --token $RAILWAY_TOKEN
+        run: ./railway.sh configure --token $RAILWAY_TOKEN
+
+      - name: Build with Maven
+        run: mvn clean package --batch-mode --no-transfer-progress
+
+      - name: Deploy to Railway
+        run: ./railway.sh up
