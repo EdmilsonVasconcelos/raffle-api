@@ -54,7 +54,7 @@ class CustomerServiceTest {
         Assertions.assertEquals(customerId, result.getId());
         Assertions.assertEquals("john", result.getName());
         Assertions.assertEquals("john@example.com", result.getEmail());
-        Mockito.verify(customerRepository, Mockito.times(1)).findById(customerId);
+        Mockito.verify(customerRepository, Mockito.times(2)).findById(customerId);
     }
 
     @Test

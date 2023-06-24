@@ -31,10 +31,3 @@ jobs:
 
       - name: Running tests
         run: mvn test
-
-      - name: Verify test status
-        run: |
-          if [ ${{ job.status }} == 'failure' ]; then
-            echo "Tests failed. Deployment to Railway canceled."
-            exit 1
-          fi
