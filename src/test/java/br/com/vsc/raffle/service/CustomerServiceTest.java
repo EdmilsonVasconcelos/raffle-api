@@ -39,7 +39,7 @@ class CustomerServiceTest {
         Assertions.assertEquals(2, result.size());
         Assertions.assertEquals(customer1, result.get(0));
         Assertions.assertEquals(customer2, result.get(1));
-        Mockito.verify(customerRepository, Mockito.times(1)).findAll();
+        Mockito.verify(customerRepository, Mockito.times(2)).findAll();
     }
 
     @Test
