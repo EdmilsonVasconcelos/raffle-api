@@ -51,20 +51,20 @@ public class AdminService {
 		return adminRepository.save(adminToSave);
 	}
 	
-	private String getEmailAdminLogged() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if (principal instanceof UserDetails) {
-		    return ((UserDetails)principal).getUsername();
-		} else {
-		    return principal.toString();
-		}
-	}
-	
 	public void deleteAdmin(Long idAdmin) {
 		checkAdminExists(idAdmin);
 
 		adminRepository.deleteById(idAdmin);
+	}
+
+	private String getEmailAdminLogged() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			return ((UserDetails)principal).getUsername();
+		} else {
+			return principal.toString();
+		}
 	}
 	
 	private Admin getAdminByEmail(String email) {
