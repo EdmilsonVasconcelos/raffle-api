@@ -6,11 +6,11 @@ import br.com.vsc.raffle.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 @AllArgsConstructor
 @RestController
@@ -35,10 +35,7 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> saveCustomer(@Valid @RequestBody CustomerDTO request) {
         Customer customer = customerService.upsertCustomer(Customer.toDomain(request));
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(customer.getId())
-                .toUri();
-
-        return ResponseEntity.created(uri).body(CustomerDTO.toDto(customer));
+        return new ResponseEntity<>(CustomerDTO.toDto(customer), CREATED);
     }
 
     @DeleteMapping(value = "/{id}")
