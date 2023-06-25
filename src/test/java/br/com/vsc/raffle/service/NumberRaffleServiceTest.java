@@ -33,7 +33,7 @@ public class NumberRaffleServiceTest {
     }
 
     @Test
-    public void testGetAll() {
+    public void getAll_shouldReturnWithSuccess() {
         NumberRaffle numberRaffle1 = new NumberRaffle();
         NumberRaffle numberRaffle2 = new NumberRaffle();
         List<NumberRaffle> numberRaffles = Arrays.asList(numberRaffle1, numberRaffle2);
@@ -48,7 +48,7 @@ public class NumberRaffleServiceTest {
     }
 
     @Test
-    public void testGetByIdExistingNumberRaffle() {
+    public void getByIdExistingNumberRaffle_shouldReturnWithSuccess() {
         Long numberRaffleId = 1L;
         NumberRaffle numberRaffle = new NumberRaffle();
         Mockito.when(numberRaffleRepository.findById(numberRaffleId)).thenReturn(Optional.of(numberRaffle));
@@ -59,7 +59,7 @@ public class NumberRaffleServiceTest {
     }
 
     @Test
-    public void testGetByIdNonExistingNumberRaffle() {
+    public void getByIdNonExistingNumberRaffle_shouldThrowsException() {
         Long numberRaffleId = 1L;
         Mockito.when(numberRaffleRepository.findById(numberRaffleId)).thenReturn(Optional.empty());
 
@@ -69,7 +69,7 @@ public class NumberRaffleServiceTest {
     }
 
     @Test
-    public void testUpdateNumberRaffle() {
+    public void updateNumberRaffle_shouldUpdateWithSuccess() {
         Long numberRaffleId = 1L;
         Long customerId = 2L;
         NumberRaffle numberRaffle = new NumberRaffle();
@@ -85,7 +85,7 @@ public class NumberRaffleServiceTest {
     }
 
     @Test
-    public void testDeleteNumberRaffle() {
+    public void deleteNumberRaffle_shouldDeleteWithSuccess() {
         Long numberRaffleId = 1L;
         NumberRaffle numberRaffle = new NumberRaffle();
         Mockito.when(numberRaffleRepository.findById(numberRaffleId)).thenReturn(Optional.of(numberRaffle));
