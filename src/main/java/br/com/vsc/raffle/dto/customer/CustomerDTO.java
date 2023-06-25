@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @Data
 @Builder
 public class CustomerDTO {
+
     private Long id;
 
     private String email;

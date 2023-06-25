@@ -15,5 +15,4 @@ class AddressDTOTest {
         assertEquals("São Paulo", addressDTO.getCity());
         assertEquals("SP", addressDTO.getUf());
     }
-
 }
