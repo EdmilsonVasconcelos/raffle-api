@@ -1,4 +1,4 @@
-package br.com.vsc.raffle.dto;
+package br.com.vsc.raffle.dto.raffle;
 
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
 import lombok.Builder;

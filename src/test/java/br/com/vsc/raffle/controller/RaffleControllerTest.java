@@ -1,6 +1,6 @@
 package br.com.vsc.raffle.controller;
 
-import br.com.vsc.raffle.dto.PaginatedListRaffleDTO;
+import br.com.vsc.raffle.dto.raffle.PaginatedListRaffleDTO;
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
 import br.com.vsc.raffle.enums.RaffleStatus;
 import br.com.vsc.raffle.model.Raffle;
