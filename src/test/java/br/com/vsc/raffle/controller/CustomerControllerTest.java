@@ -23,6 +23,7 @@ class CustomerControllerTest {
     public static final String JOHN = "John";
 
     public static final String JOHN_EMAIL_COM = "john@example.com";
+
     @Mock
     private CustomerService customerService;
 
