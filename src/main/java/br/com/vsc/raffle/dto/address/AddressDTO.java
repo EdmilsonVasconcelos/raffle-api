@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Builder
 @Data
 public class AddressDTO {
+
     @Size(min = 2, max = 255, message = "A cidade deve ter entre 2 e 255 caracteres")
     @NotNull(message = "A cidade é obrigatória")
     private String city;
