@@ -42,9 +42,7 @@ public class RaffleService {
     public List<NumberRaffle> createRaffleNumbers(Long raffleId) {
         Raffle raffle = getById(raffleId);
 
-        Integer maximumNumbersRaffle = raffle.getMaximumNumbers();
-
-        List<NumberRaffle> numbersRaffle = IntStream.range(0, maximumNumbersRaffle)
+        List<NumberRaffle> numbersRaffle = IntStream.range(0, raffle.getMaximumNumbers())
                 .mapToObj(i -> NumberRaffle.builder()
                         .raffle(raffle)
                         .number((long) i)
