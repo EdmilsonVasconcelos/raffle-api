@@ -1,4 +1,4 @@
-name: Validating code
+name: Main Flow
 
 on:
   push:
@@ -9,13 +9,13 @@ on:
       - main
 
 jobs:
-  validating-code:
+  main-flow:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
@@ -31,3 +31,14 @@ jobs:
 
       - name: Running tests
         run: mvn test
+
+      - name: Preparing to deploy
+        run: bash <(curl -fsSL cli.new)
+
+      - name: Build with Maven
+        run: mvn clean package --batch-mode --no-transfer-progress
+
+      - name: Deploy
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
