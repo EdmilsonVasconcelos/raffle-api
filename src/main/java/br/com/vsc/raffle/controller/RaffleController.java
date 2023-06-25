@@ -1,7 +1,6 @@
 package br.com.vsc.raffle.controller;
 
 import br.com.vsc.raffle.dto.PaginatedListRaffleDTO;
-import br.com.vsc.raffle.dto.number.NumberRaffleDTO;
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
 import br.com.vsc.raffle.model.Raffle;
 import br.com.vsc.raffle.service.ImageService;
@@ -15,11 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,10 +34,11 @@ public class RaffleController {
     private final ImageService imageService;
 
     @GetMapping
-    public ResponseEntity<PaginatedListRaffleDTO> getAll(@PageableDefault(sort = "productName",
-                                                    direction = Sort.Direction.ASC,
-                                                    page = 0,
-                                                    size = 6) Pageable page) {
+    public ResponseEntity<PaginatedListRaffleDTO> getAll(
+                                @PageableDefault(sort = "productName",
+                                                direction = Sort.Direction.ASC,
+                                                page = 0,
+                                                size = 6) Pageable page) {
 
         Page<Raffle> raffles = raffleService.getAllRaffles(page);
 
