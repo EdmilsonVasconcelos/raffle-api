@@ -1,6 +1,7 @@
 package br.com.vsc.raffle.controller;
 
 import br.com.vsc.raffle.dto.PaginatedListRaffleDTO;
+import br.com.vsc.raffle.dto.number.NumberRaffleDTO;
 import br.com.vsc.raffle.dto.raffle.RaffleDTO;
 import br.com.vsc.raffle.model.Raffle;
 import br.com.vsc.raffle.service.ImageService;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -76,11 +78,7 @@ public class RaffleController {
 
         raffleService.createRaffleNumbers(raffleSaved.getId());
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(raffleSaved.getId())
-                .toUri();
-
-        return ResponseEntity.created(uri).body(toDto(raffleSaved));
+        return ResponseEntity.status(HttpStatus.CREATED).body(toDto(raffleSaved));
     }
 
     @DeleteMapping(value = "/{id}")
