@@ -1,4 +1,4 @@
-name: Running tests
+name: Validating code
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  running-tests:
+  validating-code:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,14 +31,3 @@ jobs:
 
       - name: Running tests
         run: mvn test
-        
-      - name: Install Railway CLI
-        run: bash <(curl -fsSL cli.new)
-
-      - name: Build with Maven
-        run: mvn clean package --batch-mode --no-transfer-progress
-
-      - name: Deploy
-        run: railway up
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
