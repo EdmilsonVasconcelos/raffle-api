@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  main-flow:
+  validating-code:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,10 @@ jobs:
       - name: Running tests
         run: mvn test
 
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Preparing to deploy
         run: bash <(curl -fsSL cli.new)
 
