@@ -5,11 +5,11 @@ import br.com.vsc.raffle.dto.admin.request.ChangePasswordRequestDTO;
 import br.com.vsc.raffle.dto.admin.response.AdminSavedDTO;
 import br.com.vsc.raffle.model.Admin;
 import br.com.vsc.raffle.service.AdminService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -18,7 +18,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 class AdminControllerTest {
 
     public static final String ADMIN_1 = "Admin 1";
@@ -28,6 +27,11 @@ class AdminControllerTest {
     public static final String ADMIN_1_EMAIL_COM = "admin1@email.com";
 
     public static final String ADMIN_2_EMAIL_COM = "admin2@email.com";
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @InjectMocks
     private AdminController adminController;

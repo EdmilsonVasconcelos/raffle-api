@@ -6,18 +6,19 @@ import br.com.vsc.raffle.model.Address;
 import br.com.vsc.raffle.model.Customer;
 import br.com.vsc.raffle.service.CustomerService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
 class CustomerControllerTest {
 
     public static final String JOHN = "John";
@@ -29,6 +30,11 @@ class CustomerControllerTest {
 
     @InjectMocks
     private CustomerController customerController;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void getAllCustomers() {
