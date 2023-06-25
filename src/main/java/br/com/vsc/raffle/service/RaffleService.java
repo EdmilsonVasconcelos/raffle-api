@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 @AllArgsConstructor
 @Service
 public class RaffleService {
-
+    
     private final RaffleRepository raffleRepository;
 
     private final NumberRaffleRepository numberRaffleRepository;
