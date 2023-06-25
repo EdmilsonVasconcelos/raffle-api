@@ -10,8 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @AllArgsConstructor
 @Service
@@ -42,15 +43,13 @@ public class RaffleService {
         Raffle raffle = getById(raffleId);
 
         Integer maximumNumbersRaffle = raffle.getMaximumNumbers();
-        List<NumberRaffle> numbersRaffle = new ArrayList<>();
 
-        for (int i = 0; i < maximumNumbersRaffle; i++) {
-            NumberRaffle numberRaffle = new NumberRaffle();
-            numberRaffle.setRaffle(raffle);
-            numberRaffle.setNumber((long) i);
-
-            numbersRaffle.add(numberRaffle);
-        }
+        List<NumberRaffle> numbersRaffle = IntStream.range(0, maximumNumbersRaffle)
+                .mapToObj(i -> NumberRaffle.builder()
+                        .raffle(raffle)
+                        .number((long) i)
+                        .build())
+                .collect(Collectors.toList());
 
         return numberRaffleRepository.saveAll(numbersRaffle);
     }
