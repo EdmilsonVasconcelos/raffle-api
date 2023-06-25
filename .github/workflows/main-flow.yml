@@ -10,6 +10,7 @@ on:
 
 jobs:
   validating-code:
+    name: Validating code
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +34,8 @@ jobs:
         run: mvn test
 
   deployment:
+    name: Deployment
+    needs: validating-code
     runs-on: ubuntu-latest
 
     steps:
