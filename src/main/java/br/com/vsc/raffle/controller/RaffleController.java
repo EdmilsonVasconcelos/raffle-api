@@ -38,7 +38,7 @@ public class RaffleController {
                                 @PageableDefault(sort = "productName",
                                                 direction = Sort.Direction.ASC,
                                                 page = 0,
-                                                size = 1) Pageable page) {
+                                                size = 6) Pageable page) {
 
         Page<Raffle> raffles = raffleService.getAllRaffles(page);
 
